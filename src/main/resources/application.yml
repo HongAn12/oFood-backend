@@ -1,14 +1,30 @@
 spring:
   datasource:
-    url: jdbc:postgresql://ep-round-water-afp2ywv7-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require
+    url: jdbc:postgresql://ep-round-water-afp2ywv7-pooler.c-2.us-west-2.aws.neon.tech:5432/neondb?sslmode=require
     username: neondb_owner
     password: npg_s9ULNfBWok0O
   jpa:
     hibernate:
       ddl-auto: validate
     properties:
-      hibernate.format_sql: true
-      hibernate.jdbc.time_zone: UTC
+      hibernate:
+        default_schema: ofood
+        format_sql: true
+        jdbc:
+          time_zone: UTC
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+security:
+  jwt:
+    secret: change-this-to-a-random-32+bytes-secret-string}
+    access-minutes: 15
+    refresh-days: 14
+    clock-skew-seconds: 30
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
